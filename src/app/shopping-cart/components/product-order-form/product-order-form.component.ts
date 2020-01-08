@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Product } from '../../models/product.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-order-form',
   templateUrl: './product-order-form.component.html',
-  styleUrls: ['./product-order-form.component.scss']
+  styleUrls: ['./product-order-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductOrderFormComponent {
 
@@ -23,5 +24,6 @@ export class ProductOrderFormComponent {
   onSubmit() {
     const order = { ...this.product, order: this.form.value }
     this.orderProduct.emit(order);
+    this.form.get('quantity').reset(1);
   }
 }
