@@ -1,0 +1,21 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <label for="size">Size</label>
+  <select id="size" formControlName="size">
+    <option value="">Select size</option>
+    <option *ngFor="let sizeValue of product.size" [value]="sizeValue">
+      {{ sizeValue }}
+    </option>
+  </select>
+  <div>
+    <input type="number" min="1" required formControlName="quantity" />
+    <button
+      type="submit"
+      color="primary"
+      mat-stroked-button
+      [disabled]="form.invalid"
+    >
+      <mat-icon aria-hidden="false">shopping_cart</mat-icon>
+      {{ form.invalid ? 'PLEASE SELECT' : 'ADD TO CART' }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,25 @@
+.cart {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .icon {
+    width: 25%;
+    cursor: pointer;
+    .material-icons {
+      font-size: 45px;
+    }
+  }
+  .value {
+    cursor: pointer;
+    h3 {
+      text-align: end;
+      position: relative;
+      top: -5px;
+    }
+    div {
+      position: relative;
+      top: -20px;
+    }
+  }
+}

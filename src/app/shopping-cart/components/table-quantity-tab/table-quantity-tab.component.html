@@ -1,0 +1,10 @@
+<div class="container">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <input type="number" min="1" formControlName="quantity">
+    <button type="submit" [disabled]="form.invalid">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </form>
+  <mat-icon (click)="deleteFromCart()">delete</mat-icon>
+</div>
+

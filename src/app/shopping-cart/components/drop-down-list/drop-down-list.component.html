@@ -1,0 +1,17 @@
+<span class="info-stock"
+  >Selection: {{ selectionStock }} of {{ stock }} Item(s)</span
+>
+<div class="select">
+  <form [formGroup]="form" novalidate>
+    <label for="sort">Order by: </label>
+    <select 
+      formControlName="sortBy"
+       name="products" 
+       id="sort" 
+       (change)="onSelect($event.target.value)">
+      <option [value]="option" *ngFor="let option of data">
+        {{ option }}
+      </option>
+    </select>
+  </form>
+</div>

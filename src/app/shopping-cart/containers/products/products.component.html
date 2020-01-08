@@ -1,0 +1,41 @@
+<div class="main">
+  <mat-card class="sort-products">
+    <app-drop-down-list
+      (sendSortBy)="getOrderBy($event)"
+      [stock]="productsStock"
+      [selectionStock]="(products$ | async).length"
+      [sortBy]="sortBy$ | async"
+    >
+    </app-drop-down-list>
+  </mat-card>
+  <div class="products-container">
+    <app-product-card
+      *ngFor="
+        let product of products$
+          | async
+          | paginate: { itemsPerPage: 9, currentPage: currentPage }
+      "
+      class="product-card"
+      [ngClass]="{ 'hide': !(loaded$ | async) }"
+      [product]="product"
+      (detail)="viewProductDetail($event)"
+    >
+    </app-product-card>
+    <div class="spinner" *ngIf="!(loaded$ | async)">
+      <mat-spinner></mat-spinner>
+    </div>
+    <h3 *ngIf="!(products$ | async).length">No items found for your selection.</h3>
+  </div>
+  <div class="products-filters">
+    <div class="filter-card">
+      <app-filter-products 
+        [filters$] ="filters$"
+        (sendFilters)="setFilters($event)">
+      </app-filter-products>
+    </div>
+  </div>
+  <div *ngIf="products$ | async" class="pagination">
+    <pagination-controls (pageChange)="currentPage = $event">
+    </pagination-controls>
+  </div>
+</div>

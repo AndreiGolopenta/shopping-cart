@@ -1,0 +1,24 @@
+<div
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  class="search-container">
+  <div class="overflow">
+    <div
+      [@left&right]="inputFocusAnimation ? 'final' : 'initial'" 
+      [@up&down]="searchIconAnimation ? 'final' : 'initial'">
+      <i class="material-icons one">search</i>
+      <i class="material-icons two">search</i>
+    </div
+    >
+  </div>
+  <input
+    (input)="onInput(search.value)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    #search
+    [@left&right]="inputFocusAnimation ? 'final' : 'initial'"
+    type="text" 
+    placeholder="Enter search terms / product..."
+  >
+</div
+>

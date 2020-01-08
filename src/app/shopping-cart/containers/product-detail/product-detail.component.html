@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-grid-list cols="5" rowHeight="30px">
+    <mat-grid-tile [rowspan]="2" [colspan]="5">
+      <h3 class="product-name">{{ (product$ | async).name }}</h3>
+    </mat-grid-tile>
+    <mat-grid-tile [rowspan]="10" [colspan]="2">
+      <app-image-container [product]="product$ | async"> </app-image-container>
+    </mat-grid-tile>
+    <mat-grid-tile [rowspan]="10" [colspan]="3">
+      <app-price [product]="product$ | async"> </app-price>
+      <app-product-order-form 
+        [product]="product$ | async"
+        (orderProduct)="handleOrder($event)">
+      </app-product-order-form>
+    </mat-grid-tile>
+    <mat-grid-tile [rowspan]="9" [colspan]="5">
+      <app-product-description [product]="product$ | async">
+      </app-product-description>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

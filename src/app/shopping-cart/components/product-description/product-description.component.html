@@ -1,0 +1,35 @@
+<div>
+  <mat-tab-group>
+    <mat-tab label="Description">
+      <p>{{ product.description }}</p>
+    </mat-tab>
+    <mat-tab label="Fact Sheet">
+      <mat-list dense>
+        <mat-list-item>
+          <strong>Product Name:</strong>
+          <span> {{ product.name }} </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <strong>Manufacturer:</strong>
+          <span> {{ product.manufacturer }} </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <strong>Material:</strong>
+          <span>{{ product.material }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <strong>For women/men/unisex:</strong>
+          <span>{{ product.for }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <strong>Season:</strong>
+          <span>{{ product.season }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>

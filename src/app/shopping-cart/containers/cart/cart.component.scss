@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+  th,
+  td {
+    color: #545e6f;
+  }
+  .products-tab-header {
+    span {
+      margin-left: 30px;
+    }
+  }
+  .products-tab {
+    width: 400px;
+    padding: 15px 25px 15px 10px;
+  }
+  .quantity-tab {
+    width: 150px;
+  }
+  .unit-price {
+    width: 250px;
+  }
+  .total {
+    font-weight: 500;
+    width: 80px;
+    &-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
+.order-button {
+  position: relative;
+  padding: 30px;
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+  }
+}

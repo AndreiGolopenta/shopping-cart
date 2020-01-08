@@ -1,0 +1,11 @@
+<mat-expansion-panel [formGroup]="parent">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <ng-content select="h4"></ng-content>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+    <ng-content select=".content"></ng-content>
+  <mat-action-row>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="parent.invalid">Apply Filter</button>
+  </mat-action-row>
+</mat-expansion-panel>

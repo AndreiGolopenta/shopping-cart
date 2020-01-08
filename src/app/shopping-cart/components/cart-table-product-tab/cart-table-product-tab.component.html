@@ -1,0 +1,13 @@
+<mat-grid-list cols="7" rowHeight="20px">
+  <mat-grid-tile [rowspan]="3" [colspan]="2">
+    <img [src]="data.image" alt="logo" />
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="3" [colspan]="5">
+    <div class="container">
+      <div class="product">{{ data.name }}</div>
+      <div class="product">
+        <strong>Size: </strong> {{ data.order.size }}
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

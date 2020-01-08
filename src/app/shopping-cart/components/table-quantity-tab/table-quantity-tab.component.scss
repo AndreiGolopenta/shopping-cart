@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  form {
+    display: flex;
+    input {
+      border-radius: 4px;
+      border: none;
+      box-shadow: 0 0 2px #23292d;
+      width: 32px;
+      padding: 4px 10px;
+      margin-right: 10px;
+    }
+    button {
+      border: none;
+      background: none;
+      margin: 0;
+      padding: 0;
+      color: #545e6f;
+    }
+  }
+  mat-icon {
+    cursor: pointer;
+  }
+
+}

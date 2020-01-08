@@ -1,0 +1,31 @@
+<div class="app">
+  <div class="app-header">
+    <div class="image">
+      <img src="/assets/products/logo.png" alt="logo" />
+    </div>
+    <div class="search">
+      <app-search (searchValue)="searchProducts($event)"> </app-search>
+    </div>
+    <div class="cart">
+      <app-info-cart
+        [totalOrderPrice]="totalOrderPrice$ | async"
+        [cartQuantity]="cartQuantity$ | async"
+        (goToCartRoute)="handleNavigate($event)"
+      >
+      </app-info-cart>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="app-nav">
+      <button routerLink="/products" mat-button>
+        Products
+      </button>
+    </div>
+    <div class="app-container">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="app-footer">
+      <p>&copy; My Shooping App</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+form {
+  position: absolute;
+  top: 155px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  label {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  select, input[type="number"] {
+    margin-bottom: 15px;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #23292d;
+  }
+  input[type="number"] {
+    width: 32px;
+    border: none;
+    height: 25px;
+    padding: 4px 10px;
+    margin-right: 4px;
+  }
+  button {
+    width: 228px;
+  }
+}

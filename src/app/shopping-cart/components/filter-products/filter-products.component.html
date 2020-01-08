@@ -1,0 +1,73 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <mat-accordion multi="false">
+    <app-filters-expansion-panel [parent]="form">
+      <h4>Manufacturer</h4>
+      <section class="content" formArrayName="manufacturer">
+        <ng-container
+          *ngFor="let prop of (filters$ | async).manufacturer; index as i"
+          [formGroupName]="i"
+        >
+          <mat-checkbox color="primary" formControlName="checked">
+            {{ prop.name }}
+          </mat-checkbox>
+        </ng-container>
+      </section>
+    </app-filters-expansion-panel>
+
+    <app-filters-expansion-panel [parent]="form">
+      <h4>Size</h4>
+      <section class="content" formArrayName="size">
+        <ng-container
+          *ngFor="let prop of (filters$ | async).size; index as i"
+          [formGroupName]="i"
+        >
+          <mat-checkbox color="primary" formControlName="checked">
+            {{ prop.name }}
+          </mat-checkbox>
+        </ng-container>
+      </section>
+    </app-filters-expansion-panel>
+
+    <app-filters-expansion-panel [parent]="form">
+      <h4>Season</h4>
+      <section class="content" formArrayName="season">
+        <ng-container
+          *ngFor="let prop of (filters$ | async).season; index as i"
+          [formGroupName]="i"
+        >
+          <mat-checkbox formControlName="checked" color="primary">
+            {{ prop.name }}
+          </mat-checkbox>
+        </ng-container>
+      </section>
+    </app-filters-expansion-panel>
+
+    <app-filters-expansion-panel [parent]="form">
+      <h4>For...</h4>
+      <section class="content" formArrayName="for">
+        <ng-container
+          *ngFor="let prop of (filters$ | async).for; index as i"
+          [formGroupName]="i"
+        >
+          <mat-checkbox formControlName="checked" color="primary">
+            {{ prop.name }}
+          </mat-checkbox>
+        </ng-container>
+      </section>
+    </app-filters-expansion-panel>
+
+    <app-filters-expansion-panel [parent]="form">
+      <h4>Material</h4>
+      <section class="content" formArrayName="material">
+        <ng-container
+          *ngFor="let prop of (filters$ | async).material; index as i"
+          [formGroupName]="i"
+        >
+          <mat-checkbox formControlName="checked" color="primary">
+            {{ prop.name }}
+          </mat-checkbox>
+        </ng-container>
+      </section>
+    </app-filters-expansion-panel>
+  </mat-accordion>
+</form>
