@@ -11,11 +11,12 @@ export const initialState: CartState = {
   totalPrice: 0
 };
 
-function totalPrice(cart: { [id: string]: Product }) {
-  return Object.values(cart).reduce((prev, next: Product) => {
-    const nextValue = parseFloat((next.order.quantity * next.price).toFixed(2));
-    return (prev * 100 + nextValue * 100) / 100;
+function totalPrice(cart: { [id: string]: Product }): number {
+  const result = Object.values(cart).reduce((prev, next: Product) => {
+    const nextValue = (next.order.quantity * next.price * 100);
+    return (prev * 100 + nextValue) / 100;
   }, 0);
+  return parseFloat(result.toFixed(2));
 }
 
 export function reducer(

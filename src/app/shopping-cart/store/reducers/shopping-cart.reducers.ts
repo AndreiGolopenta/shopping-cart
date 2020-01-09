@@ -1,6 +1,6 @@
 import * as fromShoppingCart from '../actions/shopping-cart.actions';
 import { Product } from '../../models/product.interface';
-import { Filters } from '../../models/filters.interface';
+import { Filters, Category } from '../../models/filters.interface';
 
 export interface ShoppingCartState {
   data: Product[];
@@ -103,7 +103,7 @@ export function reducer(
       return {
         ...state,
         filters
-      }
+      };
     }
 
     case fromShoppingCart.LOAD_FILTERS: {
@@ -112,7 +112,7 @@ export function reducer(
         ...state,
         filters,
         loaded: false
-      }
+      };
     }
 
     case fromShoppingCart.LOAD_FILTERS_SUCCESS: {
@@ -121,6 +121,34 @@ export function reducer(
         ...state,
         loaded: true,
         data: newData
+      };
+    }
+
+    case fromShoppingCart.REMOVE_FILTER: {
+      const filterCategory: Category[] = [ ...state.filters[action.payload] ];
+      filterCategory.forEach((value: Category) => {
+        value.checked = false;
+      });
+      const filters = { ...state.filters, [action.payload]: filterCategory };
+      return {
+        ...state,
+        filters
+      };
+    }
+
+    case fromShoppingCart.REMOVE_ALL_FILTERS: {
+      const filters: Filters = { ...state.filters };
+      
+      for (let prop in filters) {
+        const values = filters[prop].map((value: Category) => {
+          return { name: value.name, checked: false }
+        })
+        filters[prop] = values;
+      }
+
+      return {
+        ...state,
+        filters
       }
     }
 

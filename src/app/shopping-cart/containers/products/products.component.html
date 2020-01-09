@@ -8,6 +8,16 @@
     >
     </app-drop-down-list>
   </mat-card>
+  <div
+    class="active-filters"
+    [@chips]="activeFilters.length ? 'final' : 'initial'"
+  >
+    <app-info-active-filters
+      [activeFilters]="activeFilters"
+      (removeFilter)="handleRemoveFilter($event)"
+    >
+    </app-info-active-filters>
+  </div>
   <div class="products-container">
     <app-product-card
       *ngFor="
@@ -16,7 +26,7 @@
           | paginate: { itemsPerPage: 9, currentPage: currentPage }
       "
       class="product-card"
-      [ngClass]="{ 'hide': !(loaded$ | async) }"
+      [ngClass]="{ hide: !(loaded$ | async) }"
       [product]="product"
       (detail)="viewProductDetail($event)"
     >
@@ -24,13 +34,18 @@
     <div class="spinner" *ngIf="!(loaded$ | async)">
       <mat-spinner></mat-spinner>
     </div>
-    <h3 *ngIf="!(products$ | async).length">No items found for your selection.</h3>
+    <h3 *ngIf="!(products$ | async).length">
+      No items found for your selection.
+    </h3>
   </div>
   <div class="products-filters">
     <div class="filter-card">
-      <app-filter-products 
-        [filters$] ="filters$"
-        (sendFilters)="setFilters($event)">
+      <app-filter-products
+        [filters$]="filters$"
+        [activeFilters]="activeFilters"
+        (sendFilters)="setFilters($event)"
+        (removeAllFilters)="handleRemoveAllFilters($event)"
+      >
       </app-filter-products>
     </div>
   </div>

@@ -9,6 +9,7 @@ import { TableQuantityTabComponent } from './table-quantity-tab/table-quantity-t
 import { SnackBarOrderCompleteComponent } from './snack-bar-order-complete/snack-bar-order-complete.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
 import { FiltersExpansionPanelComponent } from './filters-expansion-panel/filters-expansion-panel.component';
+import { InfoActiveFiltersComponent } from '../components/info-active-filters/info-active-filters.component';
 
 export const components: any[] = [
   ProductCardComponent,
@@ -21,7 +22,8 @@ export const components: any[] = [
   TableQuantityTabComponent,
   SnackBarOrderCompleteComponent,
   FilterProductsComponent,
-  FiltersExpansionPanelComponent
+  FiltersExpansionPanelComponent,
+  InfoActiveFiltersComponent
 ];
 
 export * from './snack-bar-order-complete/snack-bar-order-complete.component';

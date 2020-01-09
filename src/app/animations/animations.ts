@@ -3,7 +3,8 @@ import {
   transition,
   style,
   animate,
-  state
+  state,
+  keyframes
 } from '@angular/animations';
 
 export const upDown = trigger('up&down', [
@@ -52,4 +53,50 @@ export const scale = trigger('cardScale', [
     })
   ),
   transition('initial <=> final', [animate('150ms ease-in-out')])
+]);
+
+export const cartAnimation = trigger('cart', [
+  state(
+    'initial',
+    style({
+      transform: 'scale(1)'
+    })
+  ),
+  state(
+    'final',
+    style({
+      transform: 'scale(1)'
+    })
+  ),
+  transition('initial <=> final', [
+    animate(
+      '1000ms ease-in-out',
+      keyframes([
+        style({ transform: 'scale(1.1)' }),
+        style({ transform: 'rotate(3deg)' }),
+        style({ transform: 'rotate(-6deg)' }),
+        style({ transform: 'rotate(3deg)' }),
+        style({ transform: 'rotate(-6deg)' }),
+        style({ transform: 'scale(1)' })
+      ])
+    )
+  ])
+]);
+
+export const chipsPanel = trigger('chips', [
+  state(
+    'initial',
+    style({
+      height: 0,
+      opacity: 0
+    })
+  ),
+  state(
+    'final',
+    style({
+      height: '40px',
+      opacity: 1
+    })
+  ),
+  transition('initial <=> final', [animate('300ms ease-in-out')])
 ]);

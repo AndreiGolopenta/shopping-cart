@@ -71,3 +71,13 @@
     </app-filters-expansion-panel>
   </mat-accordion>
 </form>
+<div 
+  *ngIf="activeFilters.length"
+  class="reset-filters-btn">
+  <button 
+    mat-stroked-button 
+    color="primary"
+    (click)="handleRemoveAllFilters($event)">
+    Remove all filters
+  </button>
+</div>

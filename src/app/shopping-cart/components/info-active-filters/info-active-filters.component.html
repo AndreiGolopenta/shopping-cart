@@ -1,0 +1,9 @@
+<mat-chip-list>
+  <mat-chip
+    *ngFor="let filter of activeFilters"
+    (removed)="handleRemoveFilter(filter)"
+  >
+    {{ filter | titlecase }}
+    <mat-icon matChipRemove>cancel</mat-icon>
+  </mat-chip>
+</mat-chip-list>

@@ -9,10 +9,21 @@
     height: 10px;
     margin: -25px 0 0 14px;
   }
+  .active-filters {
+    width: 70.5%;
+    height: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 14px;
+    top: 6px;
+    margin: 2px 0;
+  }
   .products-container {
     width: 75%;
     display: flex;
     flex-wrap: wrap;
+    min-height: 700px;
     h3 {
       padding-top: 50px;
       width: 100%;
@@ -33,11 +44,13 @@
     }
   }
   .products-filters {
-    width: 25%;  
+    position: absolute;
+    top: -25px;
+    right: 0;
+    width: 25%;
     .filter-card {
       width: 106%;
       height: 700px;
-      margin-top: -42px;
       margin-left: 2px;
     }
   }

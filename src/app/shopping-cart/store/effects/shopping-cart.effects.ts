@@ -13,11 +13,8 @@ import {
 import * as shopingCartActions from '../actions/shopping-cart.actions';
 import { ShoppingCartService } from '../../services/shoppingCart.service';
 import { Product } from '../../models/product.interface';
-import {
-  Filters,
-  Category,
-  UtilityFilters
-} from '../../models/filters.interface';
+import { Filters } from '../../models/filters.interface';
+import { UtilityFunctions } from './utilityFunctions';
 
 @Injectable()
 export class ShopingCartEffects {
@@ -26,72 +23,6 @@ export class ShopingCartEffects {
     private shoopingCartService: ShoppingCartService
   ) {}
 
-  utilityFilters(data: Product[], filter: string): Category[] {
-    const extractFilters: string[] = data.map((product: Product) => {
-      return product[filter];
-    });
-    const flatExtractedFilters = [].concat(...extractFilters);
-    return flatExtractedFilters
-      .reduce(
-        (prev: string, next: string) =>
-          prev.includes(next) ? prev : [...prev, next],
-        []
-      )
-      .map((value: string) => {
-        return { name: value, checked: false };
-      });
-  }
-
-  utilityConvertFilters(filters: Filters): UtilityFilters {
-    const result: UtilityFilters = {
-      manufacturer: [],
-      size: [],
-      for: [],
-      material: [],
-      season: []
-    };
-    for (let prop in filters) {
-      filters[prop].forEach((value: Category) => {
-        if (value.checked) {
-          result[prop].push(value.name);
-        }
-      });
-    }
-    return result;
-  }
-
-  utilityAddFilters(data: Product[], filters: UtilityFilters): Product[] {
-    let newData: Product[] = [];
-    for (let prop in filters) {
-      if (filters[prop].length) {
-        if (!newData.length) {
-          newData = data;
-        }
-        switch (prop) {
-          case 'size': {
-            const result = newData.filter((product: Product) => {
-              const propertyFromProduct = product[prop].join('');
-              return (
-                filters[prop].filter((val: string) =>
-                  propertyFromProduct.includes(val)
-                ).length === filters[prop].length
-              );
-            });
-            return (newData = result);
-          }
-          default: {
-            const propertyFromFilter = filters[prop].join('');
-            const result = newData.filter((product: Product) =>
-              propertyFromFilter.includes(product[prop])
-            );
-            newData = result;
-          }
-        }
-      }
-    }
-    return newData;
-  }
-
   @Effect()
   loadProducts$ = this.actions$
     .pipe(ofType(shopingCartActions.LOAD_PRODUCTS))
@@ -99,11 +30,17 @@ export class ShopingCartEffects {
       switchMap(() => {
         return this.shoopingCartService.getProducts().pipe(
           map((products: Product[]) => {
-            const manufacturer = this.utilityFilters(products, 'manufacturer');
-            const season = this.utilityFilters(products, 'season');
-            const gender = this.utilityFilters(products, 'for');
-            const material = this.utilityFilters(products, 'material');
-            const size = this.utilityFilters(products, 'size');
+            const manufacturer = UtilityFunctions.utilityFilters(
+              products,
+              'manufacturer'
+            );
+            const season = UtilityFunctions.utilityFilters(products, 'season');
+            const gender = UtilityFunctions.utilityFilters(products, 'for');
+            const material = UtilityFunctions.utilityFilters(
+              products,
+              'material'
+            );
+            const size = UtilityFunctions.utilityFilters(products, 'size');
             const filters = {
               manufacturer,
               season,
@@ -152,10 +89,13 @@ export class ShopingCartEffects {
     .pipe(
       map((action: shopingCartActions.loadFilters) => action.payload),
       switchMap((activeFilters: Filters) => {
-        const filters = this.utilityConvertFilters(activeFilters);
+        const filters = UtilityFunctions.utilityConvertFilters(activeFilters);
         return this.shoopingCartService.getProducts().pipe(
           map((products: Product[]) => {
-            const newProducts = this.utilityAddFilters(products, filters);
+            const newProducts = UtilityFunctions.utilityAddFilters(
+              products,
+              filters
+            );
             return new shopingCartActions.loadFiltersSuccess(newProducts);
           })
         );

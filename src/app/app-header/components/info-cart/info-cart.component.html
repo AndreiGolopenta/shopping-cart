@@ -2,9 +2,14 @@
   class="cart"
   (click)="handleNavigate()">
   <div class="icon">
-    <i class="material-icons" [matBadge]="cartQuantity" matBadgeColor="warn">
+    <i
+      [@cart]="animate ? 'initial' : 'final'" 
+      class="material-icons" 
+      [matBadge]="cartQuantity" 
+      matBadgeColor="warn">
       shopping_cart
-    </i>
+    </i
+    >
   </div>
   <div class="value">
     <h3>CART</h3>

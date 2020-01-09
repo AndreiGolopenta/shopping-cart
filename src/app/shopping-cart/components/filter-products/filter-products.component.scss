@@ -2,3 +2,9 @@ mat-radio-group, section {
   display: flex;
   flex-direction: column;
 }
+.reset-filters-btn {
+  margin-top: 13px;
+  button {
+    width: 100%;
+  }
+}

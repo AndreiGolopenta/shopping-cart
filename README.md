@@ -2,8 +2,6 @@
 
 ## Description
 
---Project under development--
-
 Simple e-commerce cart application build with:
 * Angular
 * NGRX

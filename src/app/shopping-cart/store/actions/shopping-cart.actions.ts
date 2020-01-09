@@ -17,7 +17,8 @@ export const SEARCH_PRODUCTS_SUCCESS = '[shoppingCart] Search Products Success';
 export const BUILD_FILTERS_FROM_DATA = '[shoppingCart] Build Filters From Data';
 export const LOAD_FILTERS = '[shoppingCart] Load Filters';
 export const LOAD_FILTERS_SUCCESS = '[shoppingCart] Add Filters Success';
-
+export const REMOVE_FILTER = '[shoppingCart] Remove Filter';
+export const REMOVE_ALL_FILTERS = '[shoppingCart] Remove All Filters';
 
 export class loadProducts implements Action {
   readonly type = LOAD_PRODUCTS;
@@ -73,6 +74,15 @@ export class loadFiltersSuccess implements Action {
   constructor(public payload: Product[]) {}
 }
 
+export class removeFilter implements Action {
+  readonly type = REMOVE_FILTER;
+  constructor(public payload: string) {}
+}
+
+export class removeAllFilters implements Action {
+  readonly type = REMOVE_ALL_FILTERS;
+}
+
 export type productsActions =
   | loadProducts
   | loadProductsFail
@@ -84,4 +94,6 @@ export type productsActions =
   | searchProductsSuccess
   | buildFiltersFromData
   | loadFilters
-  | loadFiltersSuccess;
+  | loadFiltersSuccess
+  | removeFilter
+  | removeAllFilters;
